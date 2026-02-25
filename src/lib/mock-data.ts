@@ -10,7 +10,7 @@ export const mockProfile: Profile = {
     github_url: "https://github.com/Daongocthach",
     linkedin_url: "https://www.linkedin.com/in/daongocthach",
     email: "thachdn@finepro.net",
-    avatar_url: "",
+    avatar_url: "/images/avatar.jpg",
     skills: [
         "React JS",
         "React Native",
