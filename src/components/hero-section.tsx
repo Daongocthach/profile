@@ -69,7 +69,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
                             <Badge
                                 key={skill}
                                 variant="secondary"
-                                className="px-3 py-1 bg-purple-500/10 text-purple-300 border border-purple-500/20 hover:bg-purple-500/20 transition-colors"
+                                className="px-3 py-1 bg-purple-500/10 text-purple-700 dark:text-purple-300 border border-purple-500/20 hover:bg-purple-500/20 transition-colors"
                             >
                                 {skill}
                             </Badge>

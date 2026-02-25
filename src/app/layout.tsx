@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
 
 const inter = Inter({
@@ -8,12 +10,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Dao Ngoc Thach — Full-Stack Developer",
+  title: "Dao Ngoc Thach — FrontEnd Developer",
   description:
-    "Portfolio of Dao Ngoc Thach — Full-Stack Developer specializing in modern web technologies. Explore my projects and get in touch.",
-  keywords: ["developer", "portfolio", "full-stack", "next.js", "react"],
+    "Portfolio of Dao Ngoc Thach — FrontEnd Developer specializing in modern web technologies. Explore my projects and get in touch.",
+  keywords: ["developer", "portfolio", "frontend", "next.js", "react"],
   openGraph: {
-    title: "Dao Ngoc Thach — Full-Stack Developer",
+    title: "Dao Ngoc Thach — FrontEnd Developer",
     description:
       "Crafting high-performance web experiences with modern technologies.",
     type: "website",
@@ -26,10 +28,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} font-sans antialiased`}>
-        {children}
+        <ThemeProvider>
+          <ThemeToggle />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
 }
+

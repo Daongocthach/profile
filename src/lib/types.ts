@@ -5,6 +5,7 @@ export interface Project {
     project_url: string | null;
     github_url: string | null;
     image_url: string | null;
+    screenshots: string[];
     technologies: string[] | null;
     sort_order: number;
     created_at: string;
