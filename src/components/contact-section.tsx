@@ -1,37 +1,60 @@
 "use client";
 
-import React, { useState } from "react";
-import { Mail, Phone, MapPin, Calendar, CheckCircle2 } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Mail, Phone, MapPin, Calendar, CheckCircle2, ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { Link, useRouter } from "@/i18n/routing";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { database } from "@/lib/firebase";
+import { database, auth } from "@/lib/firebase";
 import { ref, push, set } from "firebase/database";
+import { onAuthStateChanged } from "firebase/auth";
 
 export const ContactSection = () => {
     const t = useTranslations("contact");
+    const router = useRouter();
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
     const [copiedLabel, setCopiedLabel] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [user, setUser] = useState<any>(null);
+    
+    // Form State
+    const [formData, setFormData] = useState({
+        fullName: "",
+        email: "",
+        phone: "",
+        message: ""
+    });
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            if (currentUser) {
+                setFormData(prev => ({
+                    ...prev,
+                    fullName: currentUser.displayName || "",
+                    email: currentUser.email || ""
+                }));
+            }
+        });
+        return () => unsubscribe();
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
         
-        const form = e.currentTarget;
-        const formData = new FormData(form);
         const data = {
-            fullName: formData.get("full-name"),
-            phone: formData.get("phone"),
-            email: formData.get("email"),
-            message: formData.get("message"),
+            ...formData,
             timestamp: Date.now(),
+            status: "pending",
+            uid: user?.uid || null,
         };
         
         try {
             if (!database) {
-                alert("Firebase chưa được cấu hình. Vui lòng điền thông tin vào src/lib/firebase.ts");
+                alert("Firebase chưa được cấu hình.");
                 return;
             }
             const messagesRef = ref(database, 'messages');
@@ -39,10 +62,10 @@ export const ContactSection = () => {
             await set(newMessageRef, data);
 
             setIsSuccessModalOpen(true);
-            form.reset();
+            setFormData(prev => ({ ...prev, message: "" })); // Clear message only
         } catch (error) {
             console.error("Firebase error:", error);
-            alert("Có lỗi xảy ra khi gửi dữ liệu lên Firebase. Vui lòng kiểm tra lại cấu hình trong src/lib/firebase.ts");
+            alert("Có lỗi xảy ra khi gửi dữ liệu.");
         } finally {
             setIsSubmitting(false);
         }
@@ -60,7 +83,17 @@ export const ContactSection = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     {/* Left side: Info */}
                     <div className="space-y-12">
-                        <h3 className="text-3xl font-bold">{t("getInTouch")}</h3>
+                        <div className="flex items-center justify-between">
+                            <h3 className="text-3xl font-bold">{t("getInTouch")}</h3>
+                            {user && (
+                                <Link href="/history">
+                                    <Button variant="ghost" className="rounded-xl gap-2 h-10 text-purple-500 hover:bg-purple-500/10 hover:text-purple-400 group/btn">
+                                        {t("viewHistory")}
+                                        <ChevronRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                                    </Button>
+                                </Link>
+                            )}
+                        </div>
                         
                         <div className="space-y-8">
                             {/* Email */}
@@ -144,6 +177,8 @@ export const ContactSection = () => {
                                 name="full-name"
                                 placeholder={t("form.fullName")} 
                                 className="bg-muted/50 border-none h-12 rounded-xl" 
+                                value={formData.fullName}
+                                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                                 required
                             />
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -151,6 +186,8 @@ export const ContactSection = () => {
                                     name="phone"
                                     placeholder={t("form.phoneNumber")} 
                                     className="bg-muted/50 border-none h-12 rounded-xl" 
+                                    value={formData.phone}
+                                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                     required
                                 />
                                 <Input 
@@ -158,6 +195,8 @@ export const ContactSection = () => {
                                     placeholder={t("form.yourEmail")} 
                                     className="bg-muted/50 border-none h-12 rounded-xl" 
                                     type="email"
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                     required
                                 />
                             </div>
@@ -165,6 +204,8 @@ export const ContactSection = () => {
                                 name="message"
                                 placeholder={t("form.yourProblem")} 
                                 className="bg-muted/50 border-none min-h-[150px] rounded-2xl resize-none" 
+                                value={formData.message}
+                                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                 required
                             />
                             <Button 

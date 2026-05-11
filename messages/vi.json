@@ -2,7 +2,11 @@
   "nav": {
     "home": "Trang chủ",
     "projects": "Dự án",
-    "contact": "Liên hệ"
+    "contact": "Liên hệ",
+    "dashboard": "Hộp thư",
+    "logout": "Đăng xuất",
+    "admin": "Quản trị viên",
+    "customer": "Khách hàng"
   },
   "hero": {
     "welcome": "Chào mừng đến với portfolio của tôi",
@@ -159,6 +163,7 @@
   "contact": {
     "title": "Chúng tôi muốn lắng nghe bạn",
     "getInTouch": "Liên hệ ngay",
+    "viewHistory": "Lịch sử liên hệ",
     "email": "Địa chỉ Email",
     "phone": "Số điện thoại",
     "location": "Địa chỉ",
@@ -174,6 +179,48 @@
       "successTitle": "Gửi thành công!",
       "successMessage": "Cảm ơn bạn! Thông tin của bạn đã được gửi đi thành công. Chúng tôi sẽ kết nối với bạn trong thời gian sớm nhất!"
     }
+  },
+  "dashboard": {
+    "title": "Hộp thư",
+    "subtitle": "Quản lý tin nhắn và yêu cầu từ người dùng",
+    "total": "Tổng số",
+    "showing": "Đang hiển thị",
+    "searchPlaceholder": "Tìm theo tên, email hoặc số điện thoại...",
+    "allStatuses": "Tất cả trạng thái",
+    "noMessages": "Không tìm thấy tin nhắn nào.",
+    "noResults": "Không có tin nhắn nào khớp với bộ lọc.",
+    "userInfo": "Thông tin người dùng",
+    "messageResponse": "Tin nhắn & Phản hồi",
+    "sentAt": "Thời gian gửi",
+    "status": "Trạng thái",
+    "actions": "Hành động",
+    "updateStatus": "Cập nhật trạng thái",
+    "adminResponse": "Admin phản hồi",
+    "repliedAt": "Đã phản hồi lúc",
+    "replyTo": "Phản hồi cho",
+    "yourResponse": "Nội dung phản hồi",
+    "typePlaceholder": "Nhập nội dung phản hồi tại đây...",
+    "cancel": "Hủy bỏ",
+    "sendResponse": "Gửi phản hồi",
+    "deleteConfirm": "Bạn có chắc chắn muốn xóa tin nhắn này không?",
+    "statuses": {
+      "pending": "Chờ xử lý",
+      "read": "Đã xem",
+      "contacted": "Đã liên hệ",
+      "resolved": "Đã giải quyết"
+    }
+  },
+  "history": {
+    "title": "Lịch sử tin nhắn",
+    "subtitle": "Theo dõi các yêu cầu và phản hồi của bạn",
+    "cannotDelete": "Không thể xóa tin nhắn sau khi đã có phản hồi.",
+    "noMessages": "Bạn chưa gửi tin nhắn nào."
+  },
+  "notifications": {
+    "title": "Thông báo",
+    "empty": "Không có thông báo mới",
+    "replied": "Admin đã phản hồi: {message}",
+    "view": "Xem chi tiết"
   },
   "footer": {
     "builtWith": "Xây dựng bằng",
