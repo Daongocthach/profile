@@ -1,0 +1,182 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "welcome": "Welcome to my portfolio",
+    "hi": "Hi, I'm"
+  },
+  "projects": {
+    "title": "My Projects",
+    "subtitle": "A collection of projects I've built, showcasing my skills and passion for web development.",
+    "comingSoon": "Projects coming soon...",
+    "viewDetail": "View project details",
+    "overview": "Overview",
+    "keyFeatures": "Key Features",
+    "theChallenge": "The Challenge",
+    "theSolution": "The Solution",
+    "appScreenshots": "App Screenshots",
+    "projectType": "Project Type",
+    "myRole": "My Role",
+    "duration": "Duration",
+    "teamSize": "Team Size",
+    "launched": "Launched",
+    "featuredProject": "Featured Project",
+    "interestedWork": "Interested in working together?",
+    "letDiscuss": "Let's discuss your next project",
+    "list": {
+      "fineprojects": {
+        "name": "Fineprojects",
+        "description": "A mobile workspace app for managing projects, meetings, leave requests, overtime, notifications, and internal operations in one platform.",
+        "type": "Mobile enterprise internal management app",
+        "role": "Mobile Developer",
+        "duration": "2025 - 2026",
+        "teamSize": "4 - 6 members",
+        "launched": "Internal release",
+        "stats": [
+          { "label": "Productivity Increase", "value": "35%" },
+          { "label": "Active Users", "value": "100+" },
+          { "label": "Customers", "value": "10+" }
+        ],
+        "features": [
+          "Project, task, and progress management",
+          "Meeting scheduling and room management",
+          "Leave request and approval workflow",
+          "Overtime reports and timesheets",
+          "Real-time notifications and reminders",
+          "User profile and role-based access"
+        ],
+        "challenge": "Business workflows were spread across multiple tools. It was difficult to track progress and status in real time. Teams needed better coordination between project, HR, and management workflows.",
+        "solution": "Built a centralized mobile app for core operational workflows. Added real-time data sync and instant notifications. Designed clear permissions and streamlined user flows to reduce friction."
+      },
+      "finetag": {
+        "name": "Finetag",
+        "description": "Expo/React Native mobile app for NFC scanning, Bluetooth, QR/DMC, device verification, checklist inspection, tag writing, and notifications for operational workflows.",
+        "type": "Enterprise mobile application",
+        "role": "Mobile app development",
+        "duration": "3 months",
+        "teamSize": "Finepro Automation",
+        "launched": "April 12, 2026",
+        "stats": [
+          { "label": "Productivity Increase", "value": "35%" },
+          { "label": "Active Users", "value": "100+" },
+          { "label": "Customers", "value": "20+" }
+        ],
+        "features": [
+          "Scan and write NFC tags",
+          "Scan barcode / QR / DMC tray",
+          "Connect and manage Bluetooth devices",
+          "Equipment checklist inspection",
+          "View details and inspection history",
+          "Receive push notifications",
+          "Manage equipment list and status",
+          "Multi-language support"
+        ],
+        "challenge": "Combining multiple identification methods like NFC, BLE, QR, and camera. Ensuring real-time data sync and handling device status.",
+        "solution": "Used Expo/React Native for cross-platform development. Integrated react-native-nfc-manager, react-native-ble-plx, and vision camera."
+      },
+      "finetalent": {
+        "name": "Recruitment (Finetalent)",
+        "description": "Expo/React Native mobile app for recruitment workflows, ID card QR scanning, multi-step profile entry, and CV upload for candidates.",
+        "type": "Recruitment mobile application",
+        "role": "Mobile app development",
+        "duration": "In development",
+        "teamSize": "Finepro Automation",
+        "launched": "Coming soon",
+        "stats": [
+          { "label": "Productivity", "value": "Updating" },
+          { "label": "Active Users", "value": "Updating" },
+          { "label": "Customers", "value": "Updating" }
+        ],
+        "features": [
+          "Multi-step recruitment form",
+          "ID card QR code scanning",
+          "Auto-fill information from scanned data",
+          "CV Upload",
+          "Success confirmation screen",
+          "Multi-language support",
+          "Form state persistence and flow navigation"
+        ],
+        "challenge": "Designing a multi-step recruitment flow with many data fields and strict validation. Integrating QR scanning for auto-filling candidate info.",
+        "solution": "Used Expo Router for clear screen separation. Used React Hook Form with Zod for validation. Integrated camera/QR scanner for ID card reading."
+      },
+      "fine-detection": {
+        "name": "Fine Detection Mobile App",
+        "description": "React Native (Expo) mobile app for manufacturing quality control and defect inspection workflows.",
+        "type": "B2B manufacturing quality control mobile application",
+        "role": "Mobile App Developer / React Native Engineer",
+        "duration": "2026-01-29 to 2026-04-21",
+        "teamSize": "Small cross-functional team",
+        "launched": "2026-04-21",
+        "stats": [
+          { "label": "Productivity", "value": "Streamlined" },
+          { "label": "Users", "value": "Internal" },
+          { "label": "Deployment", "value": "Enterprise" }
+        ],
+        "features": [
+          "NFC or credential-based authentication",
+          "Defect settings create/edit",
+          "Defect item capture and analysis flow",
+          "Product code scanning and image evidence capture",
+          "Approval workflow and status updates",
+          "Form management",
+          "History search and filters",
+          "Multilingual UI",
+          "Maestro E2E test flows"
+        ],
+        "challenge": "Digitizing a manual defect inspection workflow into a mobile-first experience. Supporting multiple user roles such as operators, supervisors, and reviewers.",
+        "solution": "Built a React Native app with Expo Router for structured mobile navigation. Used TanStack Query and Zustand for state management."
+      },
+      "check-calo": {
+        "name": "Check Calo",
+        "description": "Mobile app for tracking calories and meals via photos, supporting nutrition management, user authentication, and multi-language experience.",
+        "type": "Mobile app template / Health tracking",
+        "role": "Mobile App Developer",
+        "duration": "Development phase",
+        "teamSize": "Personal Project",
+        "launched": "v1.0.0",
+        "stats": [
+          { "label": "Experience", "value": "Smooth" },
+          { "label": "Platform", "value": "iOS & Android" },
+          { "label": "Tech Stack", "value": "Modern" }
+        ],
+        "features": [
+          "Login and authentication",
+          "Calorie/meal tracking by photo",
+          "Light/dark mode UI",
+          "Multi-language English - Vietnamese",
+          "Server state management with React Query",
+          "Reusable component library",
+          "Testing and linting available"
+        ],
+        "challenge": "Need a stable starting platform instead of building from scratch. Must keep a clear architecture for easy feature expansion.",
+        "solution": "Integrated Expo Router for file-based navigation. Used Supabase for authentication. Used React Query and Zustand to separate states."
+      }
+    }
+  },
+  "contact": {
+    "title": "We Want To Hear From You",
+    "getInTouch": "Get In Touch",
+    "email": "Email address",
+    "phone": "Phone number",
+    "location": "Office location",
+    "workingDays": "Working days",
+    "workingHours": "08:00 - 17:00",
+    "mondayToSaturday": "Monday - Saturday",
+    "form": {
+      "fullName": "Full name",
+      "phoneNumber": "Phone number",
+      "yourEmail": "Your email",
+      "yourProblem": "Your problem",
+      "submit": "Submit",
+      "successTitle": "Message Sent!",
+      "successMessage": "Thank you for reaching out! Your message has been sent successfully. We will get back to you as soon as possible."
+    }
+  },
+  "footer": {
+    "builtWith": "Built with",
+    "and": "and"
+  }
+}

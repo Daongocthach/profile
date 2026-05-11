@@ -1,28 +1,26 @@
+import Image from "next/image";
 import { Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { Profile } from "@/lib/types";
+import { useTranslations } from "next-intl";
 
 interface HeroSectionProps {
     profile: Profile | null;
 }
 
 export function HeroSection({ profile }: HeroSectionProps) {
+    const t = useTranslations("hero");
     const name = profile?.name || "Dao Ngoc Thach";
     const role = profile?.role || "Front-End Developer";
     const description =
         profile?.description ||
         "Crafting high-performance web experiences with modern technologies.";
     const location = profile?.location || "Vietnam";
-    const initials = name
-        .split(" ")
-        .map((w) => w[0])
-        .join("")
-        .slice(-2)
-        .toUpperCase();
+    const avatarUrl = profile?.avatar_url || "/images/logo.png";
 
     return (
-        <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
+        <section id="home" className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
             {/* Background gradient blobs */}
             <div className="absolute inset-0 -z-10">
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse" />
@@ -31,14 +29,16 @@ export function HeroSection({ profile }: HeroSectionProps) {
             </div>
 
             <div className="container mx-auto px-6 text-center">
-                {/* Avatar */}
-                <div className="relative mx-auto w-36 h-36 mb-8">
-                    <div className="absolute inset-0 rounded-full bg-linear-to-br from-purple-500 via-violet-500 to-blue-500 animate-spin-slow" />
-                    <div className="absolute inset-[3px] rounded-full bg-background" />
-                    <div className="absolute inset-[6px] rounded-full bg-linear-to-br from-purple-500/20 via-violet-500/20 to-blue-500/20 flex items-center justify-center">
-                        <span className="text-5xl font-bold bg-linear-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                            {initials}
-                        </span>
+                {/* Logo */}
+                <div className="relative mx-auto w-48 h-48 mb-8">
+                    <div className="rounded-full overflow-hidden w-full h-full">
+                        <Image
+                            src={avatarUrl}
+                            alt={name}
+                            fill
+                            className="object-cover"
+                            priority
+                        />
                     </div>
                 </div>
 

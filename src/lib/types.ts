@@ -1,5 +1,6 @@
 export interface Project {
     id: string;
+    slug: string;
     name: string;
     description: string | null;
     project_url: string | null;
@@ -9,6 +10,16 @@ export interface Project {
     technologies: string[] | null;
     sort_order: number;
     created_at: string;
+    // New fields for detail page
+    type?: string;
+    role?: string;
+    duration?: string;
+    team_size?: string;
+    launched?: string;
+    stats?: { label: string; value: string }[];
+    features?: string[];
+    challenge?: string;
+    solution?: string;
 }
 
 export interface Profile {

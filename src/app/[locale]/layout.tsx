@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://res.cloudinary.com/dalhc6zvg/image/upload/v1772035695/A%CC%89nh_chu%CC%A3p_ma%CC%80n_hi%CC%80nh_25-2-2026_23718_profile-phi-rose-50.vercel.app_yrllsh.jpg",
+        url: "https://res.cloudinary.com/dalhc6zvg/image/upload/v17720695/A%CC%89nh_chu%CC%A3p_ma%CC%80n_hi%CC%80nh_25-2-2026_23718_profile-phi-rose-50.vercel.app_yrllsh.jpg",
         width: 1200,
         height: 630,
         alt: "Dao Ngoc Thach — FrontEnd Developer Portfolio",
@@ -39,18 +39,34 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { routing } from '@/i18n/routing';
+import { Navbar } from '@/components/navbar';
+
+export default async function RootLayout({
   children,
-}: Readonly<{
+  params
+}: {
   children: React.ReactNode;
-}>) {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  if (!routing.locales.includes(locale as any)) {
+    notFound();
+  }
+
+  const messages = await getMessages();
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
-        <ThemeProvider>
-          <ThemeToggle />
+    <html lang={locale} className="dark" suppressHydrationWarning>
+      <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
+        <NextIntlClientProvider messages={messages}>
+          <Navbar />
           {children}
-        </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

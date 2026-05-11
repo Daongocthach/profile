@@ -1,38 +1,46 @@
+"use client";
+
+import React from "react";
 import { ProjectCard } from "@/components/project-card";
 import type { Project } from "@/lib/types";
+import { useTranslations } from "next-intl";
 
 interface ProjectsSectionProps {
     projects: Project[];
 }
 
 export function ProjectsSection({ projects }: ProjectsSectionProps) {
+    const t = useTranslations("projects");
+
+    // Sort projects by sort_order
+    const sortedProjects = [...projects].sort((a, b) => a.sort_order - b.sort_order);
+
     return (
-        <section className="py-20 px-6">
-            <div className="container mx-auto max-w-6xl">
+        <section id="projects" className="py-24 px-6 bg-background">
+            <div className="container mx-auto max-w-7xl">
                 {/* Section header */}
-                <div className="text-center mb-14">
-                    <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                        <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                            My Projects
+                <div className="mb-20">
+                    <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
+                        <span className="bg-linear-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
+                            {t("title")}
                         </span>
                     </h2>
-                    <p className="text-muted-foreground max-w-xl mx-auto">
-                        A collection of projects I&apos;ve built, showcasing my skills and
-                        passion for web development.
+                    <p className="text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                        {t("subtitle")}
                     </p>
                 </div>
 
-                {/* Projects grid */}
-                {projects.length > 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {projects.map((project) => (
-                            <ProjectCard key={project.id} project={project} />
+                {/* Projects list (Wide Cards) */}
+                {sortedProjects.length > 0 ? (
+                    <div className="space-y-16">
+                        {sortedProjects.map((project, index) => (
+                            <ProjectCard key={project.id} project={project} index={index} />
                         ))}
                     </div>
                 ) : (
-                    <div className="text-center py-20">
-                        <p className="text-muted-foreground text-lg">
-                            Projects coming soon...
+                    <div className="text-center py-20 border-2 border-dashed border-border/50 rounded-[3rem]">
+                        <p className="text-muted-foreground text-lg italic">
+                            {t("comingSoon")}
                         </p>
                     </div>
                 )}

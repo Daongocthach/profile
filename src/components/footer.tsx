@@ -1,12 +1,14 @@
 import { Github, Linkedin, Mail, Heart } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import type { Profile } from "@/lib/types";
+import { useTranslations } from "next-intl";
 
 interface FooterProps {
     profile: Profile | null;
 }
 
 export function Footer({ profile }: FooterProps) {
+    const t = useTranslations("footer");
     const name = profile?.name || "Dao Ngoc Thach";
     const currentYear = new Date().getFullYear();
 
@@ -17,9 +19,7 @@ export function Footer({ profile }: FooterProps) {
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6">
                     {/* Copyright */}
                     <p className="text-sm text-muted-foreground flex items-center gap-1.5">
-                        © {currentYear} {name}. Built with{" "}
-                        <Heart className="w-3.5 h-3.5 text-red-400 fill-red-400" /> and
-                        Next.js
+                        © {currentYear} {name}
                     </p>
 
                     {/* Social links */}

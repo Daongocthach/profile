@@ -1,0 +1,182 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "projects": "Dự án",
+    "contact": "Liên hệ"
+  },
+  "hero": {
+    "welcome": "Chào mừng đến với portfolio của tôi",
+    "hi": "Xin chào, tôi là"
+  },
+  "projects": {
+    "title": "Dự án của tôi",
+    "subtitle": "Một tập hợp các dự án tôi đã xây dựng, thể hiện kỹ năng và niềm đam mê phát triển web của tôi.",
+    "comingSoon": "Các dự án sắp ra mắt...",
+    "viewDetail": "Xem chi tiết dự án",
+    "overview": "Tổng quan",
+    "keyFeatures": "Tính năng chính",
+    "theChallenge": "Thách thức",
+    "theSolution": "Giải pháp",
+    "appScreenshots": "Ảnh ứng dụng",
+    "projectType": "Loại dự án",
+    "myRole": "Vai trò",
+    "duration": "Thời gian",
+    "teamSize": "Nhóm",
+    "launched": "Phát hành",
+    "featuredProject": "Dự án tiêu biểu",
+    "interestedWork": "Bạn có ý tưởng cho dự án mới?",
+    "letDiscuss": "Hãy cùng thảo luận về dự án tiếp theo của bạn",
+    "list": {
+      "fineprojects": {
+        "name": "Fineprojects",
+        "description": "Một ứng dụng không gian làm việc di động để quản lý dự án, cuộc họp, yêu cầu nghỉ phép, làm thêm giờ, thông báo và các hoạt động nội bộ trên một nền tảng duy nhất.",
+        "type": "Ứng dụng di động quản lý nội bộ doanh nghiệp",
+        "role": "Lập trình viên Mobile",
+        "duration": "2025 - 2026",
+        "teamSize": "4 - 6 thành viên",
+        "launched": "Phát hành nội bộ",
+        "stats": [
+          { "label": "Tăng năng suất", "value": "35%" },
+          { "label": "Người dùng active", "value": "100+" },
+          { "label": "Khách hàng", "value": "10+" }
+        ],
+        "features": [
+          "Quản lý dự án, nhiệm vụ và tiến độ",
+          "Lập lịch họp và quản lý phòng họp",
+          "Quy trình xin nghỉ phép và phê duyệt",
+          "Báo cáo làm thêm giờ và bảng chấm công",
+          "Thông báo và nhắc nhở thời gian thực",
+          "Hồ sơ người dùng và quyền truy cập dựa trên vai trò"
+        ],
+        "challenge": "Các quy trình nghiệp vụ của doanh nghiệp bị phân tán trên nhiều công cụ. Khó khăn trong việc theo dõi tiến độ và trạng thái trong thời gian thực.",
+        "solution": "Xây dựng một ứng dụng di động tập trung cho các quy trình vận hành cốt lõi. Thêm đồng bộ dữ liệu thời gian thực và thông báo tức thì."
+      },
+      "finetag": {
+        "name": "Finetag",
+        "description": "Ứng dụng di động Expo/React Native cho quét NFC, Bluetooth, QR/DMC, xác minh thiết bị, kiểm tra checklist, ghi thẻ và nhận thông báo cho quy trình vận hành.",
+        "type": "Ứng dụng di động doanh nghiệp",
+        "role": "Phát triển mobile app",
+        "duration": "3 tháng",
+        "teamSize": "Finepro Automation",
+        "launched": "12 tháng 04 năm 2026",
+        "stats": [
+          { "label": "Tăng năng suất", "value": "35%" },
+          { "label": "Người dùng active", "value": "100+" },
+          { "label": "Khách hàng", "value": "20+" }
+        ],
+        "features": [
+          "Quét và ghi NFC tag",
+          "Quét barcode / QR / DMC tray",
+          "Kết nối và quản lý thiết bị Bluetooth",
+          "Kiểm tra checklist thiết bị",
+          "Xem chi tiết và lịch sử kiểm tra",
+          "Nhận thông báo đẩy",
+          "Quản lý danh sách thiết bị và trạng thái",
+          "Hỗ trợ đa ngôn ngữ"
+        ],
+        "challenge": "Kết hợp nhiều phương thức nhận diện như NFC, BLE, QR và camera. Đảm bảo đồng bộ dữ liệu thời gian thực và xử lý trạng thái thiết bị.",
+        "solution": "Sử dụng Expo/React Native để phát triển đa nền tảng. Tích hợp react-native-nfc-manager, react-native-ble-plx và vision camera."
+      },
+      "finetalent": {
+        "name": "Tuyển Dụng (Finetalent)",
+        "description": "Ứng dụng di động Expo/React Native cho quy trình ứng tuyển, quét QR căn cước, nhập hồ sơ nhiều bước và upload CV cho ứng viên.",
+        "type": "Ứng dụng di động tuyển dụng",
+        "role": "Phát triển mobile app",
+        "duration": "Đang phát triển",
+        "teamSize": "Finepro Automation",
+        "launched": "Sắp ra mắt",
+        "stats": [
+          { "label": "Tăng năng suất", "value": "Đang cập nhật" },
+          { "label": "Người dùng active", "value": "Đang cập nhật" },
+          { "label": "Khách hàng", "value": "Đang cập nhật" }
+        ],
+        "features": [
+          "Form ứng tuyển nhiều bước",
+          "Quét mã QR ID card",
+          "Tự động điền thông tin từ dữ liệu quét",
+          "Upload CV",
+          "Màn hình xác nhận nộp hồ sơ thành công",
+          "Hỗ trợ đa ngôn ngữ",
+          "Lưu trạng thái form và điều hướng theo luồng"
+        ],
+        "challenge": "Thiết kế luồng ứng tuyển nhiều bước với nhiều trường dữ liệu và validate chặt chẽ. Tích hợp quét QR để tự động điền thông tin ứng viên.",
+        "solution": "Sử dụng Expo Router để tách màn hình theo luồng rõ ràng. Dùng React Hook Form kết hợp Zod để validate."
+      },
+      "fine-detection": {
+        "name": "Fine Detection Mobile App",
+        "description": "Ứng dụng di động React Native (Expo) cho quy trình kiểm soát chất lượng sản xuất và kiểm tra lỗi.",
+        "type": "Ứng dụng di động kiểm soát chất lượng sản xuất B2B",
+        "role": "Lập trình viên Mobile App / Kỹ sư React Native",
+        "duration": "29-01-2026 đến 21-04-2026",
+        "teamSize": "Nhóm nhỏ đa chức năng",
+        "launched": "21 tháng 04 năm 2026",
+        "stats": [
+          { "label": "Năng suất", "value": "Hợp lý hóa" },
+          { "label": "Người dùng", "value": "Nội bộ" },
+          { "label": "Triển khai", "value": "Doanh nghiệp" }
+        ],
+        "features": [
+          "Xác thực dựa trên NFC hoặc thông tin đăng nhập",
+          "Tạo/chỉnh sửa thiết lập lỗi",
+          "Luồng phân tích và chụp ảnh lỗi",
+          "Quét mã sản phẩm và chụp bằng chứng hình ảnh",
+          "Quy trình phê duyệt và cập nhật trạng thái",
+          "Quản lý biểu mẫu",
+          "Tìm kiếm lịch sử và bộ lọc",
+          "Giao diện đa ngôn ngữ",
+          "Luồng kiểm thử E2E Maestro"
+        ],
+        "challenge": "Số hóa quy trình kiểm tra lỗi thủ công thành trải nghiệm ưu tiên thiết bị di động. Hỗ trợ nhiều vai trò người dùng như nhân viên vận hành, giám sát và người đánh giá.",
+        "solution": "Xây dựng ứng dụng React Native với Expo Router để điều hướng có cấu trúc. Sử dụng TanStack Query và Zustand để quản lý trạng thái."
+      },
+      "check-calo": {
+        "name": "Check Calo",
+        "description": "Ứng dụng di động theo dõi calo và bữa ăn bằng ảnh, hỗ trợ quản lý dinh dưỡng, xác thực người dùng, đồng bộ dữ liệu và trải nghiệm đa ngôn ngữ.",
+        "type": "Mẫu ứng dụng di động / Theo dõi sức khỏe",
+        "role": "Lập trình viên Mobile App",
+        "duration": "Giai đoạn phát triển",
+        "teamSize": "Dự án cá nhân",
+        "launched": "v1.0.0",
+        "stats": [
+          { "label": "Trải nghiệm", "value": "Mượt mà" },
+          { "label": "Nền tảng", "value": "iOS & Android" },
+          { "label": "Công nghệ", "value": "Modern Stack" }
+        ],
+        "features": [
+          "Đăng nhập và xác thực",
+          "Theo dõi calo/bữa ăn bằng ảnh",
+          "Giao diện sáng/tối",
+          "Đa ngôn ngữ Anh - Việt",
+          "Quản lý server state với React Query",
+          "Bộ component dùng chung",
+          "Kiểm thử và linting sẵn có"
+        ],
+        "challenge": "Cần một nền tảng khởi đầu ổn định thay vì dựng app từ đầu. Phải giữ kiến trúc rõ ràng để dễ mở rộng tính năng.",
+        "solution": "Tích hợp Expo Router để tổ chức điều hướng. Dùng Supabase cho xác thực. Dùng React Query và Zustand để tách trạng thái."
+      }
+    }
+  },
+  "contact": {
+    "title": "Chúng tôi muốn lắng nghe bạn",
+    "getInTouch": "Liên hệ ngay",
+    "email": "Địa chỉ Email",
+    "phone": "Số điện thoại",
+    "location": "Địa chỉ",
+    "workingDays": "Ngày làm việc",
+    "workingHours": "08:00 - 17:00",
+    "mondayToSaturday": "Thứ Hai - Thứ Bảy",
+    "form": {
+      "fullName": "Họ và Tên",
+      "phoneNumber": "Số điện thoại",
+      "yourEmail": "Email của bạn",
+      "yourProblem": "Vấn đề của bạn",
+      "submit": "Gửi thông tin",
+      "successTitle": "Gửi thành công!",
+      "successMessage": "Cảm ơn bạn! Thông tin của bạn đã được gửi đi thành công. Chúng tôi sẽ kết nối với bạn trong thời gian sớm nhất!"
+    }
+  },
+  "footer": {
+    "builtWith": "Xây dựng bằng",
+    "and": "và"
+  }
+}
