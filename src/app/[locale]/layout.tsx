@@ -44,31 +44,33 @@ import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { routing } from '@/i18n/routing';
 import { Navbar } from '@/components/navbar';
+import { Analytics } from "@vercel/analytics/next";
 
 export default async function RootLayout({
-  children,
-  params
+    children,
+    params
 }: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
+    children: React.ReactNode;
+    params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params;
+    const { locale } = await params;
 
-  if (!routing.locales.includes(locale as any)) {
-    notFound();
-  }
+    if (!routing.locales.includes(locale as any)) {
+        notFound();
+    }
 
-  const messages = await getMessages();
+    const messages = await getMessages();
 
-  return (
-    <html lang={locale} className="dark" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
-        <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          {children}
-        </NextIntlClientProvider>
-      </body>
-    </html>
-  );
+    return (
+        <html lang={locale} className="dark" suppressHydrationWarning>
+            <body className={`${inter.variable} font-sans antialiased bg-background text-foreground`}>
+                <NextIntlClientProvider messages={messages}>
+                    <Navbar />
+                    {children}
+                    <Analytics />
+                </NextIntlClientProvider>
+            </body>
+        </html>
+    );
 }
 
