@@ -136,7 +136,7 @@
       "check-calo": {
         "name": "Check Calo",
         "description": "Ứng dụng di động theo dõi calo và bữa ăn bằng ảnh, hỗ trợ quản lý dinh dưỡng, xác thực người dùng, đồng bộ dữ liệu và trải nghiệm đa ngôn ngữ.",
-        "type": "Mẫu ứng dụng di động / Theo dõi sức khỏe",
+        "type": "Ứng dụng di động",
         "role": "Lập trình viên Mobile App",
         "duration": "Giai đoạn phát triển",
         "teamSize": "Dự án cá nhân",

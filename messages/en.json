@@ -136,7 +136,7 @@
       "check-calo": {
         "name": "Check Calo",
         "description": "Mobile app for tracking calories and meals via photos, supporting nutrition management, user authentication, and multi-language experience.",
-        "type": "Mobile app template / Health tracking",
+        "type": "Mobile App",
         "role": "Mobile App Developer",
         "duration": "Development phase",
         "teamSize": "Personal Project",
