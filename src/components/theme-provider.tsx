@@ -18,19 +18,14 @@ interface ThemeContextValue {
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-    const [theme, setTheme] = useState<Theme>("dark");
-    const [mounted, setMounted] = useState(false);
-
-    // Read persisted theme on mount
-    useEffect(() => {
+    const [theme, setTheme] = useState<Theme>(() => {
+        if (typeof window === "undefined") return "dark";
         const stored = localStorage.getItem("theme") as Theme | null;
-        if (stored) {
-            setTheme(stored);
-        } else if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-            setTheme("light");
-        }
-        setMounted(true);
-    }, []);
+        if (stored) return stored;
+        return window.matchMedia("(prefers-color-scheme: light)").matches
+            ? "light"
+            : "dark";
+    });
 
     // Apply theme class to <html>
     useEffect(() => {
@@ -45,9 +40,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
     const toggleTheme = () =>
         setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-
-    // Prevent flash of wrong theme
-    if (!mounted) return null;
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>

@@ -3,21 +3,21 @@
 import React, { useState, useEffect } from "react";
 import { Mail, Phone, MapPin, Calendar, CheckCircle2, ChevronRight } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { Link, useRouter } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { database, auth } from "@/lib/firebase";
 import { ref, push, set } from "firebase/database";
 import { onAuthStateChanged } from "firebase/auth";
+import type { User as FirebaseUser } from "firebase/auth";
 
 export const ContactSection = () => {
     const t = useTranslations("contact");
-    const router = useRouter();
     const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
     const [copiedLabel, setCopiedLabel] = useState<string | null>(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<FirebaseUser | null>(null);
     
     // Form State
     const [formData, setFormData] = useState({

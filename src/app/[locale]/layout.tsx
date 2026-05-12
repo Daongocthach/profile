@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
 
 const inter = Inter({
@@ -55,7 +53,7 @@ export default async function RootLayout({
 }) {
     const { locale } = await params;
 
-    if (!routing.locales.includes(locale as any)) {
+    if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
         notFound();
     }
 
@@ -73,4 +71,3 @@ export default async function RootLayout({
         </html>
     );
 }
-

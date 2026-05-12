@@ -5,18 +5,32 @@ import React, { useState, useEffect } from "react";
 import { Link } from "@/i18n/routing";
 import { useTranslations, useLocale } from "next-intl";
 import { cn } from "@/lib/utils";
-import { Globe, Menu, X, User, LogOut, LayoutDashboard, Bell, BellDot } from "lucide-react";
+import { Globe, Menu, X, User, LogOut, Bell, BellDot } from "lucide-react";
 import { useRouter, usePathname } from "@/i18n/routing";
 import { auth, database } from "@/lib/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import type { User as FirebaseUser } from "firebase/auth";
 import { ref, get, onValue, query, orderByChild, equalTo } from "firebase/database";
+
+interface Notification {
+    id: string;
+    message: string;
+    adminResponse?: string;
+    respondedAt: number;
+}
+
+type UserRecord = {
+    role?: string;
+};
+
+type MessageRecord = Omit<Notification, "id">;
 
 export const Navbar = () => {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<FirebaseUser | null>(null);
     const [userRole, setUserRole] = useState<string | null>(null);
-    const [notifications, setNotifications] = useState<any[]>([]);
+    const [notifications, setNotifications] = useState<Notification[]>([]);
     const t = useTranslations("nav");
     const nt = useTranslations("notifications");
     const locale = useLocale();
@@ -31,7 +45,7 @@ export const Navbar = () => {
         window.addEventListener("scroll", handleScroll);
 
         // Listen for Auth changes
-        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser: FirebaseUser | null) => {
             if (currentUser) {
                 setUser(currentUser);
                 // Fetch Role from Database
@@ -40,7 +54,8 @@ export const Navbar = () => {
                         const userRef = ref(database, `users/${currentUser.uid}`);
                         const snapshot = await get(userRef);
                         if (snapshot.exists()) {
-                            setUserRole(snapshot.val().role);
+                            const userData = snapshot.val() as UserRecord;
+                            setUserRole(userData.role || "customer");
                         }
 
                         // Listen for Admin Responses (Notifications)
@@ -52,10 +67,10 @@ export const Navbar = () => {
                         );
 
                         onValue(userMessagesQuery, (snapshot) => {
-                            const data = snapshot.val();
+                            const data = snapshot.val() as Record<string, MessageRecord> | null;
                             if (data) {
                                 const userResponses = Object.entries(data)
-                                    .map(([key, value]: [string, any]) => ({ id: key, ...value }))
+                                    .map(([key, value]) => ({ id: key, ...value }))
                                     .filter(msg => msg.adminResponse)
                                     .sort((a, b) => b.respondedAt - a.respondedAt);
                                 setNotifications(userResponses);
