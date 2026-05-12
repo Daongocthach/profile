@@ -20,6 +20,8 @@ export interface Project {
     features?: string[];
     challenge?: string;
     solution?: string;
+    app_store_url?: string;
+    play_store_url?: string;
 }
 
 export interface Profile {

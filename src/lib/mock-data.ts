@@ -65,14 +65,16 @@ export const mockProjects: Project[] = [
             "Kiểm thử và linting sẵn có"
         ],
         challenge: "Cần một nền tảng khởi đầu ổn định thay vì dựng app từ đầu. Phải giữ kiến trúc rõ ràng để dễ mở rộng tính năng. Cần hỗ trợ auth, theme, i18n ngay từ đầu.",
-        solution: "Tích hợp Expo Router để tổ chức điều hướng. Dùng Supabase cho xác thực. Dùng React Query và Zustand để tách server state và client state. Dùng MMKV để lưu trữ cục bộ."
+        solution: "Tích hợp Expo Router để tổ chức điều hướng. Dùng Supabase cho xác thực. Dùng React Query và Zustand để tách server state và client state. Dùng MMKV để lưu trữ cục bộ.",
+        app_store_url: "https://apps.apple.com/us/app/check-calo/id6765718237",
+        play_store_url: "https://play.google.com/store/apps/details?id=com.checkcalo.app"
     },
     {
         id: "2",
         slug: "fineprojects",
         name: "Fineprojects",
         description: "A mobile workspace app for managing projects, meetings, leave requests, overtime, notifications, and internal operations in one platform.",
-        project_url: 'https://apps.apple.com/vn/app/fineprojects/id6749673116?l=vi',
+        project_url: "https://apps.apple.com/us/app/fineprojects/id6749673116",
         github_url: null,
         image_url: "/images/projects/fineprojects/fineprojects-banner.webp",
         screenshots: [
@@ -107,7 +109,9 @@ export const mockProjects: Project[] = [
             "User profile and role-based access"
         ],
         challenge: "Business workflows were spread across multiple tools. It was difficult to track progress and status in real time. Teams needed better coordination between project, HR, and management workflows.",
-        solution: "Built a centralized mobile app for core operational workflows. Added real-time data sync and instant notifications. Designed clear permissions and streamlined user flows to reduce friction."
+        solution: "Built a centralized mobile app for core operational workflows. Added real-time data sync and instant notifications. Designed clear permissions and streamlined user flows to reduce friction.",
+        app_store_url: "https://apps.apple.com/us/app/fineprojects/id6749673116",
+        play_store_url: "https://play.google.com/store/apps/details?id=com.finepro.fineprojects"
     },
     {
         id: "3",
@@ -194,7 +198,8 @@ export const mockProjects: Project[] = [
             "Lưu trạng thái form và điều hướng theo luồng"
         ],
         challenge: "Thiết kế luồng ứng tuyển nhiều bước với nhiều trường dữ liệu và validate chặt chẽ. Tích hợp quét QR để tự động điền thông tin ứng viên. Xử lý upload CV cùng với tạo hồ sơ ứng viên qua API.",
-        solution: "Sử dụng Expo Router để tách màn hình theo luồng rõ ràng. Dùng React Hook Form kết hợp Zod để validate. Tích hợp camera/QR scanner để đọc dữ liệu từ ID card."
+        solution: "Sử dụng Expo Router để tách màn hình theo luồng rõ ràng. Dùng React Hook Form kết hợp Zod để validate. Tích hợp camera/QR scanner để đọc dữ liệu từ ID card.",
+        app_store_url: "https://apps.apple.com/us/app/tuy%E1%BB%83n-d%E1%BB%A5ng/id6760999049"
     },
     {
         id: "5",
