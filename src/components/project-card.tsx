@@ -195,7 +195,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                             </div>
 
                             {/* Action Buttons */}
-                            <div className="flex items-center gap-4 pt-8">
+                            <div className="flex flex-wrap items-center gap-4 pt-8">
                                 <Button
                                     className="h-14 px-8 rounded-2xl bg-linear-to-r from-purple-600 to-blue-500 hover:from-purple-500 hover:to-blue-400 text-white font-bold text-lg transition-all shadow-lg shadow-purple-500/20 group/btn"
                                     asChild
@@ -204,7 +204,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                                         {t("viewDetail") || "Xem chi tiết dự án"}
                                     </Link>
                                 </Button>
-                                
+
                                 <Button
                                     variant="outline"
                                     size="icon"
@@ -215,6 +215,32 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                                         <ArrowUpRight className="w-6 h-6" />
                                     </Link>
                                 </Button>
+
+                                {project.app_store_url && (
+                                    <Button
+                                        variant="outline"
+                                        size="icon"
+                                        className="w-14 h-14 rounded-full border-border/50 hover:border-purple-500/50 hover:bg-purple-500/10 transition-all"
+                                        asChild
+                                    >
+                                        <a href={project.app_store_url} target="_blank" rel="noopener noreferrer">
+                                            <Image src="/images/icons/apple.svg" alt="App Store" width={24} height={24} className="dark:invert" />
+                                        </a>
+                                    </Button>
+                                )}
+
+                                {project.play_store_url && (
+                                    <Button
+                                        variant="outline"
+                                        size="icon"
+                                        className="w-14 h-14 rounded-full border-border/50 hover:border-purple-500/50 hover:bg-purple-500/10 transition-all"
+                                        asChild
+                                    >
+                                        <a href={project.play_store_url} target="_blank" rel="noopener noreferrer">
+                                            <Image src="/images/icons/playstore.svg" alt="Google Play" width={24} height={24} />
+                                        </a>
+                                    </Button>
+                                )}
                             </div>
                         </div>
                     </div>

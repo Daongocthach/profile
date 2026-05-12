@@ -196,12 +196,14 @@ export default function ProjectDetailPage({
                                                 { label: t("teamSize"), value: projectData.teamSize, icon: Users },
                                                 { label: t("launched"), value: projectData.launched, icon: Send },
                                             ].map((info, i) => (
-                                                <div key={i} className="flex items-center justify-between group">
-                                                    <div className="flex items-center gap-4">
+                                                <div key={i} className="flex items-start justify-between group gap-4">
+                                                    <div className="flex items-center gap-4 shrink-0 mt-0.5">
                                                         <info.icon className="w-5 h-5 text-muted-foreground group-hover:text-purple-400 transition-colors" />
                                                         <span className="text-muted-foreground font-medium">{info.label}</span>
                                                     </div>
-                                                    <span className="text-white font-bold">{info.value}</span>
+                                                    <div className="flex justify-end text-right">
+                                                        <span className="text-white font-bold">{info.value}</span>
+                                                    </div>
                                                 </div>
                                             ))}
                                         </div>
