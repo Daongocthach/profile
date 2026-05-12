@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { Link, useRouter } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
 import { auth, database } from "@/lib/firebase";
+import { FirebaseError } from "firebase/app";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, set } from "firebase/database";
 import { Mail, Lock, User, ArrowLeft, Loader2, Eye, EyeOff } from "lucide-react";
@@ -43,9 +43,9 @@ export default function RegisterPage() {
             }
 
             router.push("/");
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error(err);
-            if (err.code === 'auth/email-already-in-use') {
+            if (err instanceof FirebaseError && err.code === 'auth/email-already-in-use') {
                 setError("Email này đã được sử dụng.");
             } else {
                 setError("Có lỗi xảy ra khi đăng ký. Vui lòng thử lại.");

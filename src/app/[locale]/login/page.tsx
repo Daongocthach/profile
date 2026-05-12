@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Link, useRouter } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
 import { auth } from "@/lib/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Mail, Lock, ArrowLeft, Loader2, Eye, EyeOff } from "lucide-react";
@@ -10,7 +9,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
-    const t = useTranslations("auth");
     const router = useRouter();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -26,7 +24,7 @@ export default function LoginPage() {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             router.push("/");
-        } catch (err: any) {
+        } catch {
             setError("Email hoặc mật khẩu không chính xác.");
         } finally {
             setIsLoading(false);

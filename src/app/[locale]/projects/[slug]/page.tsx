@@ -4,7 +4,6 @@ import React, { use } from "react";
 import Image from "next/image";
 import { 
     ChevronLeft, 
-    ArrowUpRight, 
     CheckCircle2, 
     Smartphone, 
     User, 
@@ -20,6 +19,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Footer } from "@/components/footer";
+
+type ProjectStat = {
+    label: string;
+    value: string;
+};
 
 export default function ProjectDetailPage({
     params,
@@ -91,7 +95,7 @@ export default function ProjectDetailPage({
 
                             {/* Stats */}
                             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8">
-                                {projectData.stats?.map((stat: any, i: number) => (
+                                {(projectData.stats as ProjectStat[] | undefined)?.map((stat, i) => (
                                     <div key={i} className="space-y-1">
                                         <p className="text-3xl font-bold bg-linear-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
                                             {stat.value}

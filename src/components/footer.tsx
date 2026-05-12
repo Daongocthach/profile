@@ -1,14 +1,12 @@
-import { Github, Linkedin, Mail, Heart } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import type { Profile } from "@/lib/types";
-import { useTranslations } from "next-intl";
 
 interface FooterProps {
     profile: Profile | null;
 }
 
 export function Footer({ profile }: FooterProps) {
-    const t = useTranslations("footer");
     const name = profile?.name || "Dao Ngoc Thach";
     const currentYear = new Date().getFullYear();
 

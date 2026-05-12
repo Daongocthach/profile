@@ -3,14 +3,12 @@ import { Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import type { Profile } from "@/lib/types";
-import { useTranslations } from "next-intl";
 
 interface HeroSectionProps {
     profile: Profile | null;
 }
 
 export function HeroSection({ profile }: HeroSectionProps) {
-    const t = useTranslations("hero");
     const name = profile?.name || "Dao Ngoc Thach";
     const role = profile?.role || "Front-End Developer";
     const description =

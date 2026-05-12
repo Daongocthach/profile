@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { auth, database } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import type { User as FirebaseUser } from "firebase/auth";
 import { ref, onValue, update, get } from "firebase/database";
 import { useRouter } from "@/i18n/routing";
 import { 
@@ -11,11 +12,8 @@ import {
     User, 
     Mail, 
     Phone, 
-    CheckCircle2, 
-    AlertCircle, 
     Loader2,
     Filter,
-    MoreHorizontal,
     ChevronDown,
     Reply,
     Trash2,
@@ -25,7 +23,6 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { remove } from "firebase/database";
@@ -43,10 +40,14 @@ interface Message {
     respondedAt?: number;
 }
 
+type MessageRecord = Omit<Message, "id">;
+type UserRecord = {
+    role?: string;
+};
+
 export default function DashboardPage() {
     const router = useRouter();
     const t = useTranslations("dashboard");
-    const [user, setUser] = useState<any>(null);
     const [isAdmin, setIsAdmin] = useState(false);
     const [messages, setMessages] = useState<Message[]>([]);
     const [loading, setLoading] = useState(true);
@@ -61,15 +62,36 @@ export default function DashboardPage() {
     const [searchQuery, setSearchQuery] = useState("");
     const [statusFilter, setStatusFilter] = useState<string>("all");
 
+    const fetchMessages = React.useCallback(() => {
+        if (!database) return;
+        const messagesRef = ref(database, 'messages');
+        onValue(messagesRef, (snapshot) => {
+            const data = snapshot.val() as Record<string, MessageRecord> | null;
+            if (data) {
+                const messageList: Message[] = Object.entries(data).map(([key, value]) => ({
+                    id: key,
+                    ...value,
+                    status: value.status || 'pending'
+                }));
+                // Sort by newest first
+                messageList.sort((a, b) => b.timestamp - a.timestamp);
+                setMessages(messageList);
+            } else {
+                setMessages([]);
+            }
+            setLoading(false);
+        });
+    }, []);
+
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, async (currentUser: FirebaseUser | null) => {
             if (currentUser) {
-                setUser(currentUser);
                 // Check Admin Role
                 if (database) {
                     const userRef = ref(database, `users/${currentUser.uid}`);
                     const snapshot = await get(userRef);
-                    if (snapshot.exists() && snapshot.val().role === 'admin') {
+                    const userData = snapshot.val() as UserRecord | null;
+                    if (snapshot.exists() && userData?.role === 'admin') {
                         setIsAdmin(true);
                         fetchMessages();
                     } else {
@@ -83,28 +105,7 @@ export default function DashboardPage() {
         });
 
         return () => unsubscribe();
-    }, []);
-
-    const fetchMessages = () => {
-        if (!database) return;
-        const messagesRef = ref(database, 'messages');
-        onValue(messagesRef, (snapshot) => {
-            const data = snapshot.val();
-            if (data) {
-                const messageList: Message[] = Object.entries(data).map(([key, value]: [string, any]) => ({
-                    id: key,
-                    ...value,
-                    status: value.status || 'pending'
-                }));
-                // Sort by newest first
-                messageList.sort((a, b) => b.timestamp - a.timestamp);
-                setMessages(messageList);
-            } else {
-                setMessages([]);
-            }
-            setLoading(false);
-        });
-    };
+    }, [fetchMessages, router]);
 
     const filteredMessages = messages.filter(msg => {
         const matchesSearch = 
@@ -282,7 +283,7 @@ export default function DashboardPage() {
                                             <td className="px-6 py-6">
                                                 <div className="flex flex-col gap-3 max-w-md">
                                                     <p className="text-sm text-foreground/80 leading-relaxed italic">
-                                                        "{msg.message}"
+                                                        &quot;{msg.message}&quot;
                                                     </p>
                                                     {msg.adminResponse && (
                                                         <div className="bg-purple-500/5 border border-purple-500/10 rounded-xl p-3 space-y-1 animate-in fade-in slide-in-from-top-1">
@@ -393,7 +394,7 @@ export default function DashboardPage() {
 
                         <div className="space-y-4">
                             <div className="p-4 rounded-2xl bg-muted/30 border text-sm italic text-muted-foreground">
-                                "{replyingTo.message}"
+                                &quot;{replyingTo.message}&quot;
                             </div>
 
                             <div className="space-y-2">

@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { auth, database } from "@/lib/firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import type { User as FirebaseUser } from "firebase/auth";
 import { ref, onValue, remove, query, orderByChild, equalTo } from "firebase/database";
 import { useRouter } from "@/i18n/routing";
 import { 
@@ -31,19 +32,58 @@ interface Message {
     uid?: string;
 }
 
+type MessageRecord = Omit<Message, "id">;
+
 export default function HistoryPage() {
     const router = useRouter();
     const t = useTranslations("history");
     const dt = useTranslations("dashboard");
-    const [user, setUser] = useState<any>(null);
     const [messages, setMessages] = useState<Message[]>([]);
     const [loading, setLoading] = useState(true);
     const [authLoading, setAuthLoading] = useState(true);
 
+    const fetchUserMessages = useCallback((uid: string) => {
+        if (!database) {
+            setLoading(false);
+            return;
+        }
+        
+        try {
+            const messagesRef = ref(database, 'messages');
+            // Use query to fetch only messages for this user
+            const userMessagesQuery = query(
+                messagesRef, 
+                orderByChild('uid'), 
+                equalTo(uid)
+            );
+
+            onValue(userMessagesQuery, (snapshot) => {
+                const data = snapshot.val() as Record<string, MessageRecord> | null;
+                if (data) {
+                    const messageList: Message[] = Object.entries(data)
+                        .map(([key, value]) => ({
+                            id: key,
+                            ...value,
+                        }))
+                        .sort((a, b) => b.timestamp - a.timestamp);
+                    setMessages(messageList);
+                } else {
+                    setMessages([]);
+                }
+                setLoading(false);
+            }, (error) => {
+                console.error("Firebase onValue error:", error);
+                setLoading(false);
+            });
+        } catch (error) {
+            console.error("fetchUserMessages error:", error);
+            setLoading(false);
+        }
+    }, []);
+
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser: FirebaseUser | null) => {
             if (currentUser) {
-                setUser(currentUser);
                 fetchUserMessages(currentUser.uid);
             } else {
                 // If not logged in, wait a bit then redirect
@@ -63,46 +103,7 @@ export default function HistoryPage() {
             unsubscribe();
             clearTimeout(timer);
         };
-    }, []);
-
-    const fetchUserMessages = (uid: string) => {
-        if (!database) {
-            setLoading(false);
-            return;
-        }
-        
-        try {
-            const messagesRef = ref(database, 'messages');
-            // Use query to fetch only messages for this user
-            const userMessagesQuery = query(
-                messagesRef, 
-                orderByChild('uid'), 
-                equalTo(uid)
-            );
-
-            onValue(userMessagesQuery, (snapshot) => {
-                const data = snapshot.val();
-                if (data) {
-                    const messageList: Message[] = Object.entries(data)
-                        .map(([key, value]: [string, any]) => ({
-                            id: key,
-                            ...value,
-                        }))
-                        .sort((a, b) => b.timestamp - a.timestamp);
-                    setMessages(messageList);
-                } else {
-                    setMessages([]);
-                }
-                setLoading(false);
-            }, (error) => {
-                console.error("Firebase onValue error:", error);
-                setLoading(false);
-            });
-        } catch (error) {
-            console.error("fetchUserMessages error:", error);
-            setLoading(false);
-        }
-    };
+    }, [fetchUserMessages, router]);
 
     const handleDelete = async (msg: Message) => {
         if (msg.adminResponse) {
@@ -208,7 +209,7 @@ export default function HistoryPage() {
                                             <td className="px-6 py-6">
                                                 <div className="flex flex-col gap-3 max-w-2xl">
                                                     <p className="text-sm text-foreground/80 leading-relaxed italic">
-                                                        "{msg.message}"
+                                                        &quot;{msg.message}&quot;
                                                     </p>
                                                     {msg.adminResponse && (
                                                         <div className="bg-purple-500/5 border border-purple-500/10 rounded-xl p-3 space-y-1 animate-in fade-in slide-in-from-top-1">
